@@ -22,19 +22,19 @@ const saveMessage = async(req, res, next) => {
     }
 }
 
-async function getMessages(roomname) {
-
+const getMessages = async(req, res, next) => {
+    //incomplete
+    const roomname = 'Hello';
     var arr = [];
     try {
         var msgs = await Message.find({room: roomname}).sort({$natural: -1}).limit(15);
-        //console.log(msgs);
         msgs.forEach( function(err, index) {
             arr.push({
                 username: msgs[index].username,
                 message: msgs[index].content});
         })
-        return arr.reverse();
-
+        arr = arr.reverse();
+        res.send(arr);
     } catch (err) {
         
     }

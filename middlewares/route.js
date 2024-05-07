@@ -17,9 +17,6 @@ router.route('/room').post((req, res) => {
 
 router.route('/room/:id').post(saveMessage);
 
-router.route('/test').get(async (req, res) => {
-    var data = await getMessages(req.body.roomname);
-    res.send(data);
-});
+router.route('/room/:id').get(getMessages);
 
 module.exports = router;
