@@ -28,9 +28,13 @@ app.get('/index', (req, res) => { res.render('index') })
 app.get('/room', (req, res)=>{ res.render('room') })
 
 const server = app.listen(port, async () => {
-    console.log(`Server Running on PORT: ${port}`);
-    await connect();
-    console.log('Mongodb connected');
+    try {
+        console.log(`Server Running on PORT: ${port}`);
+        await connect();
+        console.log('Mongodb connected');
+    } catch (error) {
+        throw {error}
+    }
 })
 
 const io = socket(server);

@@ -38,7 +38,7 @@ class RoomService {
             const response = await Room.findOne({data});
             
         } catch (error) {
-            
+            throw {error}
         }
     }
 

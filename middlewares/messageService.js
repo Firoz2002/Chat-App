@@ -36,7 +36,7 @@ const getMessages = async(req, res, next) => {
         arr = arr.reverse();
         res.send(arr);
     } catch (err) {
-        
+        throw {err}
     }
 }
 

@@ -10,16 +10,15 @@ const userservice = new UserService();
 
 const register = async (req, res, next) => {
     const { username, password, email } = req.body;
-
-    if(password.length < 6) {
-        return res.status(400).json({ message: "Password less than 6 characters" })
-    } else if(userservice.userExist( {username, email} )) {
-        return res.status(403).json({ message: "User Already Exist" })
-    }
-
+    
     try {
+        
+        if(password.length < 6) {
+            return res.status(400).json({ message: "Password less than 6 characters" })
+        } 
+        
         const hash = await bcrypt.hash(password, 10);
-
+        
         await User.create({
             username,
             email,
@@ -42,6 +41,7 @@ const register = async (req, res, next) => {
             user,
             })
         })
+       
     } catch (err) {
         res.status(401).json({
             message: "Some error occured",
@@ -96,7 +96,7 @@ const login = async (req, res, next) => {
     } catch (error) {
         res.status(400).json({
             message: "An error occurred",
-            error: error.message,
+            error: error,
         })
     }
 }
@@ -104,16 +104,20 @@ const login = async (req, res, next) => {
 const userAuth = (req, res, next) => {
     const token = req.cookies.jwt
 
-    if(token) {
-        jwt.verify(token, jwtSecret, (err, decodedToken) => {
-            if (err) {
-                return res.status(401).json({message: "Not authorized"})
-            } else {
-                next();
-            }
-        })
-    } else {
-        return res.status(401).json({message: "Not authorized, token not avaliable"})
+    try {
+        if(token) {
+            jwt.verify(token, jwtSecret, (err, decodedToken) => {
+                if (err) {
+                    return res.status(401).json({message: "Not authorized"})
+                } else {
+                    next();
+                }
+            })
+        } else {
+            return res.status(401).json({message: "Not authorized, token not avaliable"})
+        }
+    } catch (error) {
+        throw {error}
     }
 }
 
