@@ -37,7 +37,6 @@ button {
 .window {
     margin: auto;
     margin-top: 20px;
-    width: 60%;
     height: 500px;
     border: 2px solid #c2c6b6;
     display: flex;
@@ -59,7 +58,7 @@ button {
 .online {
     float: left;
     height: 100vh;
-    width: 20vh;
+    width: 20%;
     position: absolute;
     left: 0px;
     top: 0px;
@@ -70,8 +69,60 @@ button {
     background-color: rgb(110, 103, 103);
     color: white;
     text-align: center;
-    font-size: 40px;
+    font-size: xx-large;
     font-weight: bolder;
+}
+
+@media only screen and (max-width: 600px) {
+    .online {
+        width: 5rem;
+    }
+    .online h2 {
+        width: 5rem;
+    }
+
+    .online .users-online {
+        font-size: medium;
+    }
+
+    .online .users {
+        font-size: x-small;
+    }
+
+    .window {
+        margin-left: 6rem;
+        margin-right: 1rem;
+        padding: 1rem;
+    }
+
+    .room-message {
+        margin-left: 6rem;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .online {
+        width: 10rem;
+    }
+
+    .online .users-online {
+        text-align: center;
+        font-size: xx-large;
+    }
+
+    .window {
+        margin-left: 11rem;
+        margin-right: 1rem;
+        padding: 1rem;
+    }
+
+    .room-message {
+        margin-left: 11rem;
+    }
+
+    .users {
+        margin-right: 5rem;
+    }
 }
 
 .users {
