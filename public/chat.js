@@ -12,8 +12,7 @@ const socket = io.connect();
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const username = urlParams.get('username');
-const roomname = urlParams.get('roomname');
-
+const roomname = urlParams.get('roomname').toLowerCase().trim();
 roomMessage.innerHTML = `Connected in room ${roomname}`
 
 
