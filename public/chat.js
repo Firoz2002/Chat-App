@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const data = await res.json();
 
         data.forEach(function(err, index) {
-            socket.emit('chat', {
+            socket.emit('recall', {
                 username: data[index].username,
                 message: data[index].message,
                 roomname: roomname
