@@ -24,7 +24,7 @@ const saveMessage = async(req, res, next) => {
 
 const getMessages = async(req, res, next) => {
     //incomplete
-    const roomname = 'Hello';
+    const roomname = req.body.roomname;
     var arr = [];
     try {
         var msgs = await Message.find({room: roomname}).sort({$natural: -1}).limit(15);

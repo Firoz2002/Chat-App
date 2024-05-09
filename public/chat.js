@@ -18,12 +18,14 @@ roomMessage.innerHTML = `Connected in room ${roomname}`
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const res = await fetch('/room/:id', {
-            method: "GET",
+        const res = await fetch('/getMsg', {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify()
+            body: JSON.stringify({
+                roomname: roomname,
+            })
         })
         const data = await res.json();
 

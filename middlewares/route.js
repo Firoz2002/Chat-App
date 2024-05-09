@@ -17,6 +17,6 @@ router.route('/room').post((req, res) => {
 
 router.route('/room/:id').post(saveMessage);
 
-router.route('/room/:id').get(getMessages);
+router.route('/getMsg').post(getMessages);
 
 module.exports = router;
