@@ -48,7 +48,6 @@ socket.emit('joined-user', {
 })
 
 send.addEventListener('click', async () => {
-    
     try {
         const res = await fetch('/room/:id', {
             method: "POST",

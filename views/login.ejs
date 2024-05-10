@@ -1,54 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style.css">
-    <title>Chat App</title>
-</head>
-<body>
-    <div class="signupPage">
-        <div>
-            <p>Login</p>
-            <form>
-                <input type="text" placeholder="Enter your Name" id="username" name="username" required>
-                <input type="password" placeholder="Enter your Password" id="password" name="password" required>
-                <button type="submit" value="Signup"> Signup </button>
+<html>
+
+    <head>
+        <title>Login | Chat-App</title>
+        <link rel="stylesheet" href="/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="main">
+            <h1>Log-In</h1>
+            <h3>Enter your login credentials</h3>
+            <form action="">
+
+                <label for="first"> Username: </label>
+                <input type="text" id="username" name="first" placeholder="Enter your Username" required>
+
+                <label for="password"> Password: </label>
+                <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+
+                <div class="wrap">
+                    <button type="submit">
+                        Submit
+                    </button>
+                </div>
+
             </form>
+            <p>Not registered? 
+                <a href="#" 
+                style="text-decoration: none;">
+                    Create an account
+                </a>
+            </p>
         </div>
-    </div>
 
-    <script>
-        const form = document.querySelector('form');
-        const username = document.querySelector('#username');
-        const password = document.querySelector('#password');
-        const display = document.querySelector('.error');
-        
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault()
-            //display.textContent=''
-            try {
-                const res = await fetch('/login', {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        username: username.value,
-                        password: password.value,
+        <script>
+            const form = document.querySelector('form');
+            const username = document.querySelector('#username');
+            const password = document.querySelector('#password');
+            
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault()
+                try {
+                    const res = await fetch('/login', {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            username: username.value,
+                            password: password.value,
+                        })
                     })
-                })
-                if(res.status >= 400 ) {
-                    alert(res.status)
-                    //return display.textContent = `${data.message}. ${data.error ? data.error : ''}`
-                } else {
-                    location.href = `/index`
+                    if(res.status == 401) {
+                        alert(`Error ${res.status}:  User does not exist`);
+                    } else if (res.status == 403) {
+                        alert(`Error ${res.status}:  Incorrect password`);
+                    } else {
+                        location.href = `/index`
+                    }
+                } catch (err) {
+                    console.log(err)
                 }
-            } catch (err) {
-                console.log(err)
-            }
-        })
+            })
+        </script>
+    </body>
 
-    </script>
-</body>
 </html>

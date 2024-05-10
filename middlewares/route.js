@@ -1,5 +1,5 @@
 const express = require('express');
-const {saveMessage, getMessages} = require('./messageService');
+const {saveMessage, getMessages} = require('../controllers/message-controller');
 const { register, login } = require('./auth');
 const router = express.Router();
 

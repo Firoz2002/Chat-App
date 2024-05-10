@@ -1,57 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style.css">
-    <title>Chat App</title>
-</head>
-<body>
-    <div class="signupPage">
-        <div>
-            <p>Signup</p>
+    <head>
+        <meta charset="UTF-8">
+        <title>Register | Chat-App</title>
+        <link rel="stylesheet" href="/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="main">
+            <h1> Register </h1>
+            <h3> Enter your credentials </h3>
             <form>
-                <input type="text" placeholder="Enter your Name" id="username" name="username" required>
-                <input type="email" placeholder="Enter your Email" id="email" name="email" required>
-                <input type="password" placeholder="Enter your Password" id="password" name="password" required>
-                <button type="submit" value="Signup"> Signup </button>
+
+                <label for="first"> Username: </label>
+                <input type="text" id="username" name="first" placeholder="Enter your Username" required>
+
+                <label for="first"> Username: </label>
+                <input type="email" id="email" name="email" placeholder="Enter your Email" required>
+
+                <label for="password"> Password: </label>
+                <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+
+                <div class="wrap">
+                    <button type="submit">
+                        Submit
+                    </button>
+                </div>
+
             </form>
+            <p>Not registered? 
+                <a href="/signup" style="text-decoration: none;">
+                    Create an account
+                </a>
+            </p>
         </div>
-    </div>
 
-    <script>
-        const form = document.querySelector('form');
-        const username = document.querySelector('#username');
-        const email = document.querySelector('#email');
-        const password = document.querySelector('#password');
-        const display = document.querySelector('.error');
-        
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault()
-            //display.textContent=''
-            try {
-                const res = await fetch('/signup', {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        username: username.value,
-                        email: email.value,
-                        password: password.value,
+        <script>
+            const form = document.querySelector('form');
+            const username = document.querySelector('#username');
+            const email = document.querySelector('#email');
+            const password = document.querySelector('#password');
+            const display = document.querySelector('.error');
+            
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault()
+                try {
+                    const res = await fetch('/signup', {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            username: username.value,
+                            email: email.value,
+                            password: password.value,
+                        })
                     })
-                })
-                
-                if(res.status === 400 || res.status === 401) {
-                    //return display.textContent = `${data.message}. ${data.error ? data.error : ''}`
-                } else if(res.status === 403) {
-                    alert("User already exist");
-                } else location.href = '/index'
-            } catch (err) {
-                console.log(err)
-            }
-        })
+                    
+                    if(res.status === 400 || res.status === 401) {
+                        alert(`Error ${res.status}:  Password is too short`)
+                    } else if(res.status === 403) {
+                        alert("User already exist");
+                    } else location.href = '/index'
+                } catch (err) {
+                    console.log(err)
+                }
+            })
 
-    </script>
-</body>
+        </script>
+    </body>
 </html>

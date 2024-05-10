@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style.css">
-    <title>Chat App</title>
-</head>
-<body>
-    <div class="content">
-        <div>
-            <p> Join Room </p>
-            <form id="loginForm" method="POST" action="/room">
-                <input type="text" placeholder="Enter Room ID" id="roomname" name="roomname" required>
-                <input type="submit" value="Join Room" id="joinRoom">
+    <head>
+        <meta charset="UTF-8">
+        <title>Rooms | Chat-App</title>
+        <link rel="stylesheet" href="/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <style>
+        button {
+            margin: 15px;
+        }
+    </style>
+
+    <body>
+        <div class="main">
+            <h1>Chat-Room</h1>
+            <form action="/room" method="POST">
+                <label> Room Name: </label>
+                <input type="text" id="roomname" name="roomname" placeholder="Enter Room-ID" required>
+
+                <div class="wrap">
+                    <button type="submit" id="create"> Create Room </button>
+                    <button type="submit" id="join"> Join Room </button>
+                </div>
             </form>
         </div>
-    </div>
-</body>
+    </body>
 </html>

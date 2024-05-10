@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
-const UserService = require('./userService');
+const UserService = require('../controllers/user-controller');
 
 require('dotenv').config();
 const jwtSecret = process.env.SECRET;
@@ -87,8 +87,8 @@ const login = async (req, res, next) => {
                         user: user._id,
                     });
                 } else {
-                    res.status(407).json({
-                    message: "Login Failed"
+                    res.status(403).json({
+                        message: "Login Failed"
                     });
                 }
             })

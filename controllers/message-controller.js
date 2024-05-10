@@ -23,7 +23,6 @@ const saveMessage = async(req, res, next) => {
 }
 
 const getMessages = async(req, res, next) => {
-    //incomplete
     const roomname = req.body.roomname;
     var arr = [];
     try {

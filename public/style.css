@@ -1,233 +1,75 @@
-* {
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+    background: #f3f3f3;
+    flex-direction: column;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: rgb(231, 216, 228);
 }
-/* -------------- room.ejs -------------- */
+
+.main {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    transition: transform 0.2s;
+    width: 500px;
+    text-align: center;
+}
 
 h1 {
-    text-align: center;
-    margin-top: 15px;
+    color: #4CAF50;
 }
 
-input {
+label {
+    display: block;
     width: 100%;
-    height: 40px;
-    text-indent: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: left;
+    color: #555;
+    font-weight: bold;
+}
+
+
+input {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
 button {
-    width: 100%;
-    height: 50px;
-    background-color: #1a2eda;
-    color: white;
-    font-size: larger;
-    font-weight: bold;
-    outline: none;
-    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     border: none;
-}
-
-.fields {
-    width: 100%;
-}
-
-.window {
-    margin: auto;
-    margin-top: 20px;
-    height: 500px;
-    border: 2px solid #c2c6b6;
-    display: flex;
-    flex-direction: column;
-    align-content: space-between;
-}
-
-.chat-message {
-    display: block;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-}
-
-#output, #feedback {
-    margin-left: 10px;
-}
-
-.online {
-    float: left;
-    height: 100vh;
-    width: 20%;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    background-color: rgb(110, 103, 103);
-}
-
-.online .users-online {
-    background-color: rgb(110, 103, 103);
     color: white;
-    text-align: center;
-    font-size: xx-large;
-    font-weight: bolder;
+    cursor: pointer;
+    background-color: #4CAF50;
+    width: 100%;
+    font-size: 16px;
+}
+
+.wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media only screen and (max-width: 600px) {
-    .online {
-        width: 5rem;
-    }
-    .online h2 {
-        width: 5rem;
+    .main {
+        width: 70vw;
     }
 
-    .online .users-online {
-        font-size: medium;
+    .wrap {
+        flex-direction: column;
     }
-
-    .online .users {
-        font-size: x-small;
-    }
-
-    .window {
-        margin-left: 6rem;
-        margin-right: 1rem;
-        padding: 1rem;
-    }
-
-    .room-message {
-        margin-left: 6rem;
-    }
-}
-
-@media only screen and (min-width: 600px) {
-    .online {
-        width: 10rem;
-    }
-
-    .online .users-online {
-        text-align: center;
-        font-size: xx-large;
-    }
-
-    .window {
-        margin-left: 11rem;
-        margin-right: 1rem;
-        padding: 1rem;
-    }
-
-    .room-message {
-        margin-left: 11rem;
-    }
-
-    .users {
-        margin-right: 5rem;
-    }
-}
-
-.users {
-    margin-left: 40px;
-    margin-top: 50px;
-}
-
-.users p {
-    background-color: rgb(110, 103, 103);
-    color: white;
-}
-
-/* -------------- login.ejs -------------- */
-
-.content {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.content p {
-    text-align: center;
-    font-size: 40px;
-    font-weight: 700;
-    margin-bottom: 40px;
-}
-
-.content input {
-    margin-bottom: 20px;
-    height: 50px;
-    border: 1px solid black;
-    border-radius: 7px;
-}
-
-.content input[type="submit"] {
-    cursor: pointer;
-}
-
-::placeholder {
-    font-weight: 700;
-}
-
-.content div {
-    border: 2px solid black;
-    padding: 70px;
-    border-radius: 25px;
-}
-
-/* ------------- signup.ejs ------------- */
-
-.signupPage {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.signupPage p {
-    text-align: center;
-    font-size: 40px;
-    font-weight: 700;
-    margin-bottom: 40px;
-}
-
-.signupPage input {
-    margin-bottom: 20px;
-    height: 50px;
-    border: 1px solid black;
-    border-radius: 7px;
-}
-
-.signupPage input[type="submit"] {
-    cursor: pointer;
-}
-
-::placeholder {
-    font-weight: 700;
-}
-
-.signupPage div {
-    border: 2px solid black;
-    padding: 70px;
-    border-radius: 25px;
-}
-
-/* -------------- home.ejs -------------- */
-.container {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid black;
-    margin: 50px;
-    border-radius: 25px;
-}
-
-.container h1 {
-    margin: 5px;
-}
-
-.container button {
-    margin: 20px;
-    border-radius: 25px;
 }
