@@ -23,7 +23,7 @@ app.use(require("./middlewares/route"));
 
 app.get('/', (req, res) => { res.render('home') })
 app.get('/login', (req, res) => { res.render('login') })
-app.get('/signup', (req, res) => { res.render('signup') })
+app.get('/signup', (req, res) => { res.render('register') })
 app.get('/index', (req, res) => { res.render('index') })
 app.get('/room', (req, res)=>{ res.render('room') })
 

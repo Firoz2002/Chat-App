@@ -26,7 +26,7 @@ const getMessages = async(req, res, next) => {
     const roomname = req.body.roomname;
     var arr = [];
     try {
-        var msgs = await Message.find({room: roomname}).sort({$natural: -1}).limit(15);
+        var msgs = await Message.find({room: roomname}).sort({$natural: -1}).limit(20);
         msgs.forEach( function(err, index) {
             arr.push({
                 username: msgs[index].username,
