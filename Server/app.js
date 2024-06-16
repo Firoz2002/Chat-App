@@ -1,3 +1,4 @@
+const path = require('path');
 const cors = require('cors');
 const express = require('express');
 const socket = require('socket.io');
@@ -9,17 +10,18 @@ const connect = require('./config/database');
 
 const app = express();
 require('dotenv').config();
-const db = mongoose.connection;
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '../Client/views'));
 
 app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(express.static('public'));
-app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, '../Client/public')));
 
-app.use(require("./middlewares/route"));
+app.use(require("./route/route"));
 
 app.get('/', (req, res) => { res.render('home') })
 app.get('/login', (req, res) => { res.render('login') })

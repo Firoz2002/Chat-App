@@ -13,9 +13,7 @@ class UserService {
         } catch (error) {
             throw {error}
         }
-    }
-
-    async 
+    } 
 } 
 
 module.exports = UserService;

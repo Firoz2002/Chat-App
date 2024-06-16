@@ -1,6 +1,6 @@
 const express = require('express');
 const {saveMessage, getMessages} = require('../controllers/message-controller');
-const { register, login } = require('./auth');
+const { register, login } = require('../middlewares/auth');
 const router = express.Router();
 
 require('dotenv').config();

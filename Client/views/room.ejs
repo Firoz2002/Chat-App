@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
 
+<html>
     <head>
         <meta charset="UTF-8">
         <title>Room | Chat-App</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.png">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.1/socket.io.js"></script>
     </head>
 
@@ -56,6 +58,7 @@
             flex-direction: column;
             align-content: space-between;
             background-color: white;
+            border-radius: 5px;
         }
 
         #output, #feedback {
@@ -175,6 +178,13 @@
             function closeNav() {
             document.getElementById("myNav").style.width = "0%";
             }
+
+            $('html').keydown(function(e){
+                if(e.which==13){
+                    const send = document.getElementById('send');
+                    send.click();
+                }
+            });
         </script>
     </body>
 </html>
