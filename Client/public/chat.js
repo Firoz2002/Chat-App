@@ -16,9 +16,9 @@ const roomname = urlParams.get('roomname').toLowerCase().trim();
 roomMessage.innerHTML = `Connected in room ${roomname}`
 
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
     try {
-        const res = await fetch('/getMsg', {
+        fetch('/getMsg', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -27,20 +27,32 @@ document.addEventListener('DOMContentLoaded', async () => {
                 roomname: roomname,
             })
         })
-        const data = await res.json();
-
-        data.forEach(function(err, index) {
-            socket.emit('recall', {
-                username: data[index].username,
-                message: data[index].message,
-                roomname: roomname
-            });
-        })    
+        .then(res => res.json())
+        .then((data) => {
+            data.forEach(function(err, index) {
+                socket.emit('recall', {
+                    username: data[index].username,
+                    message: data[index].message,
+                    roomname: roomname
+                });
+            })  
+        })         
 
     } catch (err) {
         console.log(err)
     }
 })
+
+socket.on("connect_error", (err) => {
+    // the reason of the error, for example "xhr poll error"
+    console.log(err.message);
+  
+    // some additional description, for example the status code of the initial HTTP response
+    console.log(err.description);
+  
+    // some additional context, for example the XMLHttpRequest object
+    console.log(err.context);
+});
 
 socket.emit('joined-user', {
     username: username,

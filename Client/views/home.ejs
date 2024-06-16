@@ -7,7 +7,6 @@
         <title>Chat-App</title>
         <link rel="stylesheet" href="/style.css">
         <link rel="icon" type="image/x-icon" href="assets/favicon.png">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.1/socket.io.js"></script>
     </head>
 
     <body>
@@ -15,19 +14,9 @@
             <h1>Welcome! to my <u>Chat-App</u></h1>
             <h3><i>We allow real-time communcation</i></h3>
             <div>
-                <button type="submit" id="button1">SignUp</button>
-                <button type="submit" id="button2">LogIn</button>
+                <button onclick="location.href='/register'">SignUp</button>
+                <button onclick="location.href='/login'">LogIn</button>
             </div>
         </div>
-
-        <script>
-            document.getElementById('button1').onclick = function() {
-                location.href = '/signup';
-            };
-
-            document.getElementById('button2').onclick = function() {
-                location.href = '/login';
-            }
-        </script>
     </body>
 </html>

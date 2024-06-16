@@ -26,7 +26,7 @@ function socket(io) {
         })
 
         socket.on('recall', (data) => {
-            var rooms = Object.keys(socket.rooms);
+            var rooms = Array.from(socket.rooms);
             var socketId = rooms[0];
             io.to(socketId).emit('chat', {username: data.username, message: data.message});
         })
